@@ -1,0 +1,58 @@
+<html>
+    <!-- A straightforward adaptation of the word-cumulus-goog-vis tag cloud from 
+         http://code.google.com/p/word-cumulus-goog-vis/wiki/UserGuide 
+
+         This file is used as a template and a simple JSON data structure is injected
+         to provide the data for the tag cloud
+    -->
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi">
+    </script>
+
+    <script type="text/javascript" 
+        src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/wordcumulus.js">
+    </script>
+
+    <script type="text/javascript" 
+            src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/swfobject.js">
+    </script>
+
+    <script type="text/javascript">
+      google.load("visualization", "1");
+
+      // Set callback to run when API is loaded
+      google.setOnLoadCallback(drawVisualization);
+
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+
+        // Create and populate a data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Tag');
+        data.addColumn('string', 'URL');
+        data.addColumn('number', 'Font size');
+
+        //Define an array of 3-part tuples below
+        //We're substituting them in via Python so there's a placeholder
+        var json_data = [["doesn't", "http://www.wolframalpha.com/", 3], ["got", "http://www.wolframalpha.com/input/?i=got", 3], ["keep", "http://www.wolframalpha.com/input/?i=keep", 3], ["look", "http://www.wolframalpha.com/input/?i=look", 3], ["obama's", "http://www.wolframalpha.com/", 3], ["anything", "http://www.wolframalpha.com/input/?i=anything", 3], ["candidate", "http://www.wolframalpha.com/input/?i=candidate", 3], ["santorum", "http://www.wolframalpha.com/input/?i=santorum", 3], ["something", "http://www.wolframalpha.com/input/?i=something", 3], ["anyone", "http://www.wolframalpha.com/input/?i=anyone", 3], ["change", "http://www.wolframalpha.com/input/?i=change", 3], ["democrats", "http://www.wolframalpha.com/input/?i=democrats", 3], ["getting", "http://www.wolframalpha.com/input/?i=getting", 3], ["help", "http://www.wolframalpha.com/input/?i=help", 3], ["american", "http://www.wolframalpha.com/input/?i=american", 3], ["come", "http://www.wolframalpha.com/input/?i=come", 3], ["needs", "http://www.wolframalpha.com/input/?i=needs", 3], ["put", "http://www.wolframalpha.com/input/?i=put", 3], ["real", "http://www.wolframalpha.com/input/?i=real", 3], ["since", "http://www.wolframalpha.com/input/?i=since", 3], ["stop", "http://www.wolframalpha.com/input/?i=stop", 3], ["mitt", "http://www.wolframalpha.com/input/?i=mitt", 3], ["please", "http://www.wolframalpha.com/input/?i=please", 3], ["big", "http://www.wolframalpha.com/input/?i=big", 3], ["bush", "http://www.wolframalpha.com/input/?i=bush", 3], ["still", "http://www.wolframalpha.com/input/?i=still", 3], ["tell", "http://www.wolframalpha.com/input/?i=tell", 3], ["another", "http://www.wolframalpha.com/input/?i=another", 3], ["believe", "http://www.wolframalpha.com/input/?i=believe", 3], ["hope", "http://www.wolframalpha.com/input/?i=hope", 3], ["pay", "http://www.wolframalpha.com/input/?i=pay", 3], ["see", "http://www.wolframalpha.com/input/?i=see", 3], ["energy", "http://www.wolframalpha.com/input/?i=energy", 3], ["give", "http://www.wolframalpha.com/input/?i=give", 3], ["back", "http://www.wolframalpha.com/input/?i=back", 3], ["could", "http://www.wolframalpha.com/input/?i=could", 3], ["many", "http://www.wolframalpha.com/input/?i=many", 3], ["must", "http://www.wolframalpha.com/input/?i=must", 3], ["prices", "http://www.wolframalpha.com/input/?i=prices", 3], ["well", "http://www.wolframalpha.com/input/?i=well", 3], ["government", "http://www.wolframalpha.com/input/?i=government", 3], ["i'm", "http://www.wolframalpha.com/", 3], ["say", "http://www.wolframalpha.com/input/?i=say", 3], ["that's", "http://www.wolframalpha.com/", 3], ["new", "http://www.wolframalpha.com/input/?i=new", 3], ["way", "http://www.wolframalpha.com/input/?i=way", 3], ["right", "http://www.wolframalpha.com/input/?i=right", 3], ["he's", "http://www.wolframalpha.com/", 3], ["oil", "http://www.wolframalpha.com/input/?i=oil", 3], ["-", "http://www.wolframalpha.com/input/?i=-", 4], ["can't", "http://www.wolframalpha.com/", 4], ["really", "http://www.wolframalpha.com/input/?i=really", 4], ["party", "http://www.wolframalpha.com/input/?i=party", 4], ["care", "http://www.wolframalpha.com/input/?i=care", 4], ["it.", "http://www.wolframalpha.com/input/?i=it.", 4], ["money", "http://www.wolframalpha.com/input/?i=money", 4], ["never", "http://www.wolframalpha.com/input/?i=never", 4], ["better", "http://www.wolframalpha.com/input/?i=better", 4], ["much", "http://www.wolframalpha.com/input/?i=much", 4], ["even", "http://www.wolframalpha.com/input/?i=even", 4], ["years", "http://www.wolframalpha.com/input/?i=years", 4], ["take", "http://www.wolframalpha.com/input/?i=take", 4], ["time", "http://www.wolframalpha.com/input/?i=time", 4], ["romney", "http://www.wolframalpha.com/input/?i=romney", 4], ["good", "http://www.wolframalpha.com/input/?i=good", 5], ["republican", "http://www.wolframalpha.com/input/?i=republican", 5], ["republicans", "http://www.wolframalpha.com/input/?i=republicans", 5], ["country", "http://www.wolframalpha.com/input/?i=country", 5], ["make", "http://www.wolframalpha.com/input/?i=make", 5], ["going", "http://www.wolframalpha.com/input/?i=going", 5], ["know", "http://www.wolframalpha.com/input/?i=know", 6], ["think", "http://www.wolframalpha.com/input/?i=think", 6], ["it's", "http://www.wolframalpha.com/", 6], ["us", "http://www.wolframalpha.com/input/?i=us", 6], ["go", "http://www.wolframalpha.com/input/?i=go", 6], ["president", "http://www.wolframalpha.com/input/?i=president", 6], ["paul", "http://www.wolframalpha.com/input/?i=paul", 6], ["ron", "http://www.wolframalpha.com/input/?i=ron", 7], ["gop", "http://www.wolframalpha.com/input/?i=gop", 7], ["gas", "http://www.wolframalpha.com/input/?i=gas", 7], ["need", "http://www.wolframalpha.com/input/?i=need", 7], ["want", "http://www.wolframalpha.com/input/?i=want", 7], ["one", "http://www.wolframalpha.com/input/?i=one", 8], ["vote", "http://www.wolframalpha.com/input/?i=vote", 8], ["don't", "http://www.wolframalpha.com/", 9], ["people", "http://www.wolframalpha.com/input/?i=people", 9], ["would", "http://www.wolframalpha.com/input/?i=would", 9], ["like", "http://www.wolframalpha.com/input/?i=like", 11], ["get", "http://www.wolframalpha.com/input/?i=get", 11], ["obama", "http://www.wolframalpha.com/input/?i=obama", 20]];
+
+        data.addRows(json_data.length);
+        for (var i = 0; i < json_data.length; i++) {
+            data.setCell(i, 0, json_data[i][0]); // Tag
+            data.setCell(i, 1, json_data[i][1]); // URL for tag
+            data.setCell(i, 2, 2+2.5*json_data[i][2]); // Font size for tag
+        }
+
+        // Instantiate our table object.
+        var vis = new gviz_word_cumulus.WordCumulus(document.getElementById('tc'));
+
+        // Draw our table with the data we created locally.
+        vis.draw(data, {text_color: '#00ff00', speed: 50, width:600, height:600});
+       }
+   </script>
+  </head>
+  <body>
+    <div id="tc"></div>
+  </body>
+</html>
