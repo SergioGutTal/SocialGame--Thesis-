@@ -1,0 +1,58 @@
+<html>
+    <!-- A straightforward adaptation of the word-cumulus-goog-vis tag cloud from 
+         http://code.google.com/p/word-cumulus-goog-vis/wiki/UserGuide 
+
+         This file is used as a template and a simple JSON data structure is injected
+         to provide the data for the tag cloud
+    -->
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi">
+    </script>
+
+    <script type="text/javascript" 
+        src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/wordcumulus.js">
+    </script>
+
+    <script type="text/javascript" 
+            src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/swfobject.js">
+    </script>
+
+    <script type="text/javascript">
+      google.load("visualization", "1");
+
+      // Set callback to run when API is loaded
+      google.setOnLoadCallback(drawVisualization);
+
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+
+        // Create and populate a data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Tag');
+        data.addColumn('string', 'URL');
+        data.addColumn('number', 'Font size');
+
+        //Define an array of 3-part tuples below
+        //We're substituting them in via Python so there's a placeholder
+        var json_data = [["100", "", 3], ["6", "", 3], ["adem\u00e1s", "", 3], ["alcalde", "", 3], ["amnist\u00eda", "", 3], ["andalucia", "", 3], ["asturias", "", 3], ["ayuda", "", 3], ["basta", "", 3], ["bueno,", "", 3], ["cargos", "", 3], ["ciudadano", "", 3], ["cree", "", 3], ["cuantos", "", 3], ["d", "", 3], ["dejan", "", 3], ["delitos", "", 3], ["ejemplo", "", 3], ["ellos.", "", 3], ["espa\u00f1ol", "", 3], ["espera", "", 3], ["fuerzas", "", 3], ["funcionarios", "", 3], ["ganan", "", 3], ["gobierno.", "", 3], ["hacienda", "", 3], ["hicieron", "", 3], ["hijo", "", 3], ["jose", "", 3], ["jubilados", "", 3], ["justo", "", 3], ["mantener", "", 3], ["ministros", "", 3], ["mismo,", "", 3], ["m\u00e9nos", "", 3], ["necesita", "", 3], ["ning\u00fan", "", 3], ["nivel", "", 3], ["opini\u00f3n", "", 3], ["paga", "", 3], ["pagan", "", 3], ["palmes", "", 3], ["partido,", "", 3], ["persona", "", 3], ["problema", "", 3], ["raz\u00f3n", "", 3], ["sacar", "", 3], ["social,", "", 3], ["sr", "", 3], ["tantos", "", 3], ["toca", "", 3], ["vais", "", 3], ["valencia", "", 3], ["varios", "", 3], ["voto", "", 3], ["\u00faltima", "", 3], ["\u00faltimos", "", 3], ["\"la", "", 3], ["5", "", 3], ["anterior", "", 3], ["bien,", "", 3], ["casos", "", 3], ["contrario", "", 3], ["dictadura", "", 3], ["diputados", "", 3], ["dirigentes", "", 3], ["espa\u00f1oles.", "", 3], ["fraude", "", 3], ["gastos", "", 3], ["hora", "", 3], ["intereses", "", 3], ["llegar", "", 3], ["lleva", "", 3], ["mariano", "", 3], ["medio", "", 3], ["mes", "", 3], ["miles", "", 3], ["misma", "", 3], ["nacional", "", 3], ["pa", "", 3], ["pedir", "", 3], ["pensar", "", 3], ["pensiones", "", 3], ["poca", "", 3], ["pol\u00edtico", "", 3], ["ponen", "", 3], ["primero", "", 3], ["puedo", "", 3], ["recortar", "", 3], ["rep\u00fablica", "", 3], ["responsabilidad", "", 3], ["sabemos", "", 3], ["siento", "", 3], ["sigue", "", 3], ["s\u00ed", "", 3], ["tema", "", 3], ["ten\u00e9is", "", 3], ["totalmente", "", 3], ["t\u00fa", "", 3], ["viene", "", 3], ["votar", "", 3], ["votaron", "", 3], ["votos", "", 3], ["x", "", 3], ["\u00e9l", "", 3], ["(fuente:", "", 3], ["(que", "", 3], ["2", "", 3], ["apoyo", "", 3], ["aznar", "", 3], ["bastante", "", 3], ["buenas", "", 3], ["buenos", "", 3], ["camino", "", 3], ["congreso", "", 3], ["deficit", "", 3], ["dem\u00e1s", "", 3], ["diputado", "", 3], ["empezar", "", 3], ["empresa", "", 3], ["enterado", "", 3], ["estado,", "", 3], ["felipe", "", 3], ["general", "", 3], ["gobernar", "", 3], ["gobierna", "", 3], ["gobiernos", "", 3], ["hacia", "", 3], ["hijos", "", 3], ["huelga", "", 3], ["justicia,", "", 3], ["ministro", "", 3], ["mucha", "", 3], ["nuevo", "", 3], ["pa\u00eds,", "", 3], ["pobre", "", 3], ["punto", "", 3], ["p\u00fablico", "", 3], ["que,", "", 3], ["real", "", 3], ["rey", "", 3], ["saber", "", 3], ["sabes", "", 3], ["sera", "", 3], ["se\u00f1ores", "", 3], ["solamente", "", 3], ["televisi\u00f3n", "", 3], ["tipo", "", 3], ["ue", "", 3], ["unico", "", 3], ["vivir", "", 3], ["+", "", 3], ["1", "", 3], ["comunidad", "", 3], ["crear", "", 3], ["criticar", "", 3], ["deben", "", 3], ["defender", "", 3], ["econom\u00eda", "", 3], ["entiendo", "", 3], ["hagan", "", 3], ["hola", "", 3], ["jes\u00fas", "", 3], ["libertad", "", 3], ["luis", "", 3], ["malo", "", 3], ["mercados", "", 3], ["mira", "", 3], ["n\u00famero", "", 3], ["pienso", "", 3], ["propuestas", "", 3], ["psoe.", "", 3], ["pueda", "", 3], ["p\u00fablica", "", 3], ["realmente", "", 3], ["subir", "", 3], ["s\u00e9", "", 3], ["unas", "", 3], ["\u00bf", "", 3], ["\u00bfno", "", 3], ["\u00fanico", "", 3], ["aqui", "", 3], ["ay", "", 3], ["bienestar", "", 3], ["calle", "", 3], ["cambio", "", 3], ["dando", "", 3], ["deber\u00eda", "", 3], ["entonces", "", 3], ["espa\u00f1a,", "", 3], ["espero", "", 3], ["etc.", "", 3], ["herencia", "", 3], ["leyes", "", 3], ["lugar", "", 3], ["mano", "", 3], ["no,", "", 3], ["plan", "", 3], ["politica", "", 3], ["privada", "", 3], ["respeto", "", 3], ["resto", "", 3], ["ricos", "", 3], ["sindicatos", "", 3], ["teneis", "", 3], ["trabajar", "", 3], ["(psoe)", "", 3], ["acabar", "", 3], ["actual", "", 3], ["aun", "", 3], ["cambiar", "", 3], ["dan", "", 3], ["espa\u00f1ola", "", 3], ["fin", "", 3], ["frente", "", 3], ["hispano-peruano", "", 3], ["imputado", "", 3], ["k", "", 3], ["merkel", "", 3], ["mierda", "", 3], ["paso", "", 3], ["pena", "", 3], ["perdido", "", 3], ["pp.", "", 3], ["realidad", "", 3], ["situaci\u00f3n", "", 3], ["vale", "", 3], ["absoluta", "", 3], ["alg\u00fan", "", 3], ["cuanto", "", 3], ["gesti\u00f3n", "", 3], ["iba", "", 3], ["iu", "", 3], ["iva", "", 3], ["madrid", "", 3], ["mayor", "", 3], ["meses", "", 3], ["ninguna", "", 3], ["paguen", "", 3], ["primera", "", 3], ["queremos", "", 3], ["rajoy,", "", 3], ["tal", "", 3], ["tampoco", "", 3], ["a\u00fan", "", 3], ["buen", "", 3], ["cuatro", "", 3], ["democracia", "", 3], ["dicho", "", 3], ["d\u00edas", "", 3], ["favor", "", 3], ["izquierdas", "", 3], ["madrid,", "", 3], ["necesitamos", "", 3], ["pide", "", 3], ["salud", "", 3], ["seg\u00fan", "", 3], ["veces", "", 3], ["visto", "", 3], ["zp", "", 3], ["...", "", 3], ["andaluc\u00eda", "", 3], ["casa", "", 3], ["cierto", "", 3], ["cualquier", "", 3], ["cuentas", "", 3], ["dado", "", 3], ["derecho", "", 3], ["deuda", "", 3], ["jajaja", "", 3], ["laboral", "", 3], ["luego", "", 3], ["mala", "", 3], ["manos", "", 3], ["nada.", "", 3], ["pasado", "", 3], ["programa", "", 3], ["saben", "", 3], ["ser\u00eda", "", 3], ["ve", "", 3], ["votantes", "", 3], ["ah\u00ed", "", 3], ["aquellos", "", 3], ["a\u00f1os,", "", 3], ["cara", "", 3], ["gusta", "", 3], ["hablar", "", 3], ["hizo", "", 3], ["mentiras", "", 3], ["momento", "", 3], ["peor", "", 3], ["pobres", "", 3], ["rubalcaba", "", 3], ["sueldos", "", 3], ["vaya", "", 3], ["voy", "", 3], ["\"", "", 3], ["alguien", "", 3], ["alguna", "", 3], ["electoral", "", 3], ["impuestos", "", 3], ["nueva", "", 3], ["seguro", "", 3], ["vida", "", 3], ["buena", "", 3], ["cooperaci\u00f3n", "", 3], ["despu\u00e9s", "", 3], ["dicen", "", 3], ["europa", "", 3], ["muchas", "", 3], ["poner", "", 3], ["presidente", "", 3], ["puesto", "", 3], ["quiero", "", 3], ["seguridad", "", 3], ["a\u00f1o", "", 3], ["clase", "", 3], ["comunidades", "", 3], ["dios", "", 3], ["mundo", "", 3], ["parados", "", 3], ["social", "", 3], ["ustedes", "", 3], ["volver", "", 3], ["bueno", "", 3], ["cuenta", "", 3], ["dejar", "", 3], ["d\u00e9ficit", "", 3], ["fondo", "", 3], ["gobierno,", "", 3], ["gracias", "", 3], ["ir", "", 3], ["nada,", "", 3], ["queda", "", 3], ["quiere", "", 3], ["8", "", 3], ["asi", "", 3], ["dentro", "", 3], ["educaci\u00f3n", "", 3], ["empresas", "", 3], ["oposici\u00f3n", "", 3], ["sistema", "", 3], ["sr.", "", 3], ["tres", "", 3], ["forma", "", 3], ["sabe", "", 3], ["salir", "", 3], ["se\u00f1or", "", 3], ["sueldo", "", 3], ["ciudadanos", "", 3], ["paro", "", 3], ["seguir", "", 3], ["socialistas", "", 3], ["tambien", "", 3], ["dia", "", 3], ["mayoria", "", 3], ["mayor\u00eda", "", 3], ["podemos", "", 3], ["quieren", "", 3], ["reforma", "", 3], ["veo", "", 3], ["4", "", 3], ["acuerdo", "", 3], ["cosa", "", 3], ["derecha", "", 3], ["derechos", "", 3], ["sino", "", 3], ["trabajo", "", 3], ["-", "", 3], ["caso", "", 3], ["dice", "", 3], ["mientras", "", 3], ["partidos", "", 3], ["pol\u00edtica", "", 3], ["psoe,", "", 3], ["ser\u00e1", "", 3], ["socialista", "", 3], ["encima", "", 3], ["gran", "", 3], ["grandes", "", 3], ["izquierda", "", 3], ["politicos", "", 3], ["vosotros", "", 3], ["digo", "", 3], ["nadie", "", 3], ["poder", "", 3], ["pueden", "", 3], ["s\u00f3lo", "", 3], ["verdad", "", 3], ["casi", "", 3], ["cosas", "", 3], ["hacen", "", 3], ["igual", "", 3], ["medidas", "", 3], ["parte", "", 3], ["personas", "", 3], ["aqu\u00ed", "", 4], ["iglesia", "", 4], ["ley", "", 4], ["pol\u00edticos", "", 4], ["xd", "", 4], ["as\u00ed", "", 4], ["haber", "", 4], ["culpa", "", 4], ["sido", "", 4], ["tiempo", "", 4], ["elecciones", "", 4], ["pais", "", 4], ["pp,", "", 4], ["hoy", "", 4], ["zapatero", "", 4], ["falta", "", 4], ["sanidad", "", 4], ["trabajadores", "", 4], ["toda", "", 4], ["claro", "", 4], ["debe", "", 4], ["d\u00eda", "", 4], ["haciendo", "", 4], ["pasa", "", 4], ["pa\u00eds", "", 4], ["crisis", "", 4], ["mal", "", 4], ["todas", "", 4], ["recortes", "", 4], ["usted", "", 4], ["dar", "", 4], ["tambi\u00e9n", "", 4], ["aunque", "", 4], ["est\u00e1n", "", 4], ["hecho", "", 4], ["vamos", "", 4], ["qu\u00e9", "", 4], ["da", "", 4], ["parece", "", 4], ["dos", "", 4], ["pagar", "", 4], ["millones", "", 5], ["nunca", "", 5], ["siempre", "", 5], ["mejor", "", 5], ["pueblo", "", 5], ["tan", "", 5], ["tener", "", 5], ["van", "", 5], ["estan", "", 5], ["decir", "", 5], ["creo", "", 5], ["rajoy", "", 5], ["espa\u00f1oles", "", 5], ["vez", "", 5], ["mismo", "", 5], ["cada", "", 5], ["euros", "", 5], ["gente", "", 6], ["a\u00f1os", "", 6], ["menos", "", 6], ["dinero", "", 6], ["bien", "", 6], ["est\u00e1", "", 6], ["hace", "", 6], ["ver", "", 6], ["pues", "", 6], ["partido", "", 6], ["va", "", 6], ["puede", "", 7], ["espa\u00f1a", "", 7], ["solo", "", 7], ["ser", "", 8], ["hacer", "", 8], ["ahora", "", 9], [",", "", 9], ["gobierno", "", 10], ["m\u00e1s", "", 10], ["q", "", 11], ["psoe", "", 11], ["pp", "", 12], ["mas", "", 12], ["si", "", 20]];
+
+        data.addRows(json_data.length);
+        for (var i = 0; i < json_data.length; i++) {
+            data.setCell(i, 0, json_data[i][0]); // Tag
+            data.setCell(i, 1, json_data[i][1]); // URL for tag
+            data.setCell(i, 2, 2+2.5*json_data[i][2]); // Font size for tag
+        }
+
+        // Instantiate our table object.
+        var vis = new gviz_word_cumulus.WordCumulus(document.getElementById('tc'));
+
+        // Draw our table with the data we created locally.
+        vis.draw(data, {text_color: '#00ff00', speed: 50, width:600, height:600});
+       }
+   </script>
+  </head>
+  <body>
+    <div id="tc"></div>
+  </body>
+</html>

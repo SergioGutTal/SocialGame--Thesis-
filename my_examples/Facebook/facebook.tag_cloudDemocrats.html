@@ -1,0 +1,58 @@
+<html>
+    <!-- A straightforward adaptation of the word-cumulus-goog-vis tag cloud from 
+         http://code.google.com/p/word-cumulus-goog-vis/wiki/UserGuide 
+
+         This file is used as a template and a simple JSON data structure is injected
+         to provide the data for the tag cloud
+    -->
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi">
+    </script>
+
+    <script type="text/javascript" 
+        src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/wordcumulus.js">
+    </script>
+
+    <script type="text/javascript" 
+            src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/swfobject.js">
+    </script>
+
+    <script type="text/javascript">
+      google.load("visualization", "1");
+
+      // Set callback to run when API is loaded
+      google.setOnLoadCallback(drawVisualization);
+
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+
+        // Create and populate a data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Tag');
+        data.addColumn('string', 'URL');
+        data.addColumn('number', 'Font size');
+
+        //Define an array of 3-part tuples below
+        //We're substituting them in via Python so there's a placeholder
+        var json_data = [["great", "http://www.wolframalpha.com/input/?i=great", 3], ["jobs", "http://www.wolframalpha.com/input/?i=jobs", 3], ["new", "http://www.wolframalpha.com/input/?i=new", 3], ["give", "http://www.wolframalpha.com/input/?i=give", 3], ["must", "http://www.wolframalpha.com/input/?i=must", 3], ["page", "http://www.wolframalpha.com/input/?i=page", 3], ["doesn't", "http://www.wolframalpha.com/", 3], ["let", "http://www.wolframalpha.com/input/?i=let", 3], ["love", "http://www.wolframalpha.com/input/?i=love", 3], ["time", "http://www.wolframalpha.com/input/?i=time", 3], ["keep", "http://www.wolframalpha.com/input/?i=keep", 3], ["pay", "http://www.wolframalpha.com/input/?i=pay", 3], ["ron", "http://www.wolframalpha.com/input/?i=ron", 3], ["well", "http://www.wolframalpha.com/input/?i=well", 3], ["another", "http://www.wolframalpha.com/input/?i=another", 3], ["believe", "http://www.wolframalpha.com/input/?i=believe", 3], ["also", "http://www.wolframalpha.com/input/?i=also", 3], ["that's", "http://www.wolframalpha.com/", 3], ["could", "http://www.wolframalpha.com/input/?i=could", 3], ["every", "http://www.wolframalpha.com/input/?i=every", 3], ["help", "http://www.wolframalpha.com/input/?i=help", 3], ["see", "http://www.wolframalpha.com/input/?i=see", 3], ["much", "http://www.wolframalpha.com/input/?i=much", 3], ["way", "http://www.wolframalpha.com/input/?i=way", 3], ["democrats", "http://www.wolframalpha.com/input/?i=democrats", 3], ["country", "http://www.wolframalpha.com/input/?i=country", 3], ["still", "http://www.wolframalpha.com/input/?i=still", 3], ["he's", "http://www.wolframalpha.com/", 3], ["party", "http://www.wolframalpha.com/input/?i=party", 3], ["never", "http://www.wolframalpha.com/input/?i=never", 3], ["insurance", "http://www.wolframalpha.com/input/?i=insurance", 4], ["-", "http://www.wolframalpha.com/input/?i=-", 4], ["government", "http://www.wolframalpha.com/input/?i=government", 4], ["many", "http://www.wolframalpha.com/input/?i=many", 4], [",", "http://www.wolframalpha.com/input/?i=,", 4], ["money", "http://www.wolframalpha.com/input/?i=money", 4], ["really", "http://www.wolframalpha.com/input/?i=really", 4], ["back", "http://www.wolframalpha.com/input/?i=back", 4], ["gop", "http://www.wolframalpha.com/input/?i=gop", 4], ["it.", "http://www.wolframalpha.com/input/?i=it.", 4], ["say", "http://www.wolframalpha.com/input/?i=say", 4], ["even", "http://www.wolframalpha.com/input/?i=even", 4], ["women", "http://www.wolframalpha.com/input/?i=women", 4], ["care", "http://www.wolframalpha.com/input/?i=care", 4], ["2012", "http://www.wolframalpha.com/input/?i=2012", 4], ["can't", "http://www.wolframalpha.com/", 4], ["republican", "http://www.wolframalpha.com/input/?i=republican", 4], ["i'm", "http://www.wolframalpha.com/", 4], ["take", "http://www.wolframalpha.com/input/?i=take", 4], ["need", "http://www.wolframalpha.com/input/?i=need", 4], ["health", "http://www.wolframalpha.com/input/?i=health", 5], ["going", "http://www.wolframalpha.com/input/?i=going", 5], ["go", "http://www.wolframalpha.com/input/?i=go", 5], ["make", "http://www.wolframalpha.com/input/?i=make", 5], ["know", "http://www.wolframalpha.com/input/?i=know", 5], ["want", "http://www.wolframalpha.com/input/?i=want", 5], ["republicans", "http://www.wolframalpha.com/input/?i=republicans", 5], ["think", "http://www.wolframalpha.com/input/?i=think", 5], ["us", "http://www.wolframalpha.com/input/?i=us", 5], ["good", "http://www.wolframalpha.com/input/?i=good", 5], ["vote", "http://www.wolframalpha.com/input/?i=vote", 5], ["mitt", "http://www.wolframalpha.com/input/?i=mitt", 5], ["right", "http://www.wolframalpha.com/input/?i=right", 6], ["it's", "http://www.wolframalpha.com/", 6], ["one", "http://www.wolframalpha.com/input/?i=one", 7], ["president", "http://www.wolframalpha.com/input/?i=president", 8], ["romney", "http://www.wolframalpha.com/input/?i=romney", 8], ["don't", "http://www.wolframalpha.com/", 8], ["would", "http://www.wolframalpha.com/input/?i=would", 8], ["people", "http://www.wolframalpha.com/input/?i=people", 10], ["like", "http://www.wolframalpha.com/input/?i=like", 10], ["get", "http://www.wolframalpha.com/input/?i=get", 11], ["obama", "http://www.wolframalpha.com/input/?i=obama", 20]];
+
+        data.addRows(json_data.length);
+        for (var i = 0; i < json_data.length; i++) {
+            data.setCell(i, 0, json_data[i][0]); // Tag
+            data.setCell(i, 1, json_data[i][1]); // URL for tag
+            data.setCell(i, 2, 2+2.5*json_data[i][2]); // Font size for tag
+        }
+
+        // Instantiate our table object.
+        var vis = new gviz_word_cumulus.WordCumulus(document.getElementById('tc'));
+
+        // Draw our table with the data we created locally.
+        vis.draw(data, {text_color: '#00ff00', speed: 50, width:600, height:600});
+       }
+   </script>
+  </head>
+  <body>
+    <div id="tc"></div>
+  </body>
+</html>

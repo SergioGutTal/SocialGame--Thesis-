@@ -1,0 +1,58 @@
+<html>
+    <!-- A straightforward adaptation of the word-cumulus-goog-vis tag cloud from 
+         http://code.google.com/p/word-cumulus-goog-vis/wiki/UserGuide 
+
+         This file is used as a template and a simple JSON data structure is injected
+         to provide the data for the tag cloud
+    -->
+  <head>
+    <script type="text/javascript" src="http://www.google.com/jsapi">
+    </script>
+
+    <script type="text/javascript" 
+        src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/wordcumulus.js">
+    </script>
+
+    <script type="text/javascript" 
+            src="http://word-cumulus-goog-vis.googlecode.com/svn/trunk/swfobject.js">
+    </script>
+
+    <script type="text/javascript">
+      google.load("visualization", "1");
+
+      // Set callback to run when API is loaded
+      google.setOnLoadCallback(drawVisualization);
+
+
+    // Called when the Visualization API is loaded.
+    function drawVisualization() {
+
+        // Create and populate a data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Tag');
+        data.addColumn('string', 'URL');
+        data.addColumn('number', 'Font size');
+
+        //Define an array of 3-part tuples below
+        //We're substituting them in via Python so there's a placeholder
+        var json_data = [["acuerdo", "", 3], ["aunque", "", 3], ["a\u00f1os", "", 3], ["caso", "", 3], ["digo", "", 3], ["dinero", "", 3], ["dos", "", 3], ["ejemplo", "", 3], ["eutanasia", "", 3], ["gobierno", "", 3], ["hacen", "", 3], ["haga", "", 3], ["ir", "", 3], ["madre", "", 3], ["menos", "", 3], ["mujeres", "", 3], ["parte", "", 3], ["pues", "", 3], ["tenia", "", 3], ["veo", "", 3], ["2", "", 3], ["EL", "", 3], ["Pues", "", 3], ["Yo", "", 3], ["aqui", "", 3], ["cada", "", 3], ["creo", "", 3], ["crisis", "", 3], ["dar", "", 3], ["empresarios", "", 3], ["libre", "", 3], ["mal", "", 3], ["nadie", "", 3], ["pueden", "", 3], ["tener", "", 3], ["Es", "", 3], ["Hace", "", 3], ["as\u00ed", "", 3], ["cosa", "", 3], ["debe", "", 3], ["sino", "", 3], ["usted", "", 3], ["3", "", 3], ["LOS", "", 3], ["QUE", "", 3], ["cosas", "", 3], ["vez", "", 3], ["El", "", 4], ["aborto", "", 4], ["Espa\u00f1a", "", 4], ["gusta", "", 4], ["hijos", "", 4], ["mujer", "", 4], ["tan", "", 4], ["ver", "", 4], ["A", "", 4], ["Me", "", 4], ["hacer", "", 4], ["siempre", "", 4], ["tambien", "", 4], ["Pero", "", 4], ["Por", "", 4], ["Si", "", 4], ["gente", "", 4], ["est\u00e1", "", 5], ["solo", "", 5], ["En", "", 5], ["ahora", "", 5], ["parece", "", 5], ["\u00b7", "", 5], [",", "", 6], ["k", "", 6], ["puede", "", 7], ["vida", "", 7], ["mas", "", 7], ["m\u00e1s", "", 7], ["No", "", 8], ["ser", "", 9], ["Y", "", 13], ["si", "", 20]];
+
+        data.addRows(json_data.length);
+        for (var i = 0; i < json_data.length; i++) {
+            data.setCell(i, 0, json_data[i][0]); // Tag
+            data.setCell(i, 1, json_data[i][1]); // URL for tag
+            data.setCell(i, 2, 2+2.5*json_data[i][2]); // Font size for tag
+        }
+
+        // Instantiate our table object.
+        var vis = new gviz_word_cumulus.WordCumulus(document.getElementById('tc'));
+
+        // Draw our table with the data we created locally.
+        vis.draw(data, {text_color: '#00ff00', speed: 50, width:600, height:600});
+       }
+   </script>
+  </head>
+  <body>
+    <div id="tc"></div>
+  </body>
+</html>
